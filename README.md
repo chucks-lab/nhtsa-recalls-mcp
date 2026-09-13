@@ -40,12 +40,12 @@ Example prompts once connected:
 
 ## Try the public instance
 
-- Health: `https://nhtsa-recalls-mcp.<your-subdomain>.workers.dev/health`
-- MCP endpoint: `https://nhtsa-recalls-mcp.<your-subdomain>.workers.dev/mcp`
+- Health: `https://nhtsa-recalls-mcp.chucks-lab.workers.dev/health`
+- MCP endpoint: `https://nhtsa-recalls-mcp.chucks-lab.workers.dev/mcp`
 
 **Claude (web or desktop):** Settings -> Connectors -> Add custom connector -> paste the `/mcp` URL.
-**Claude Code:** `claude mcp add --transport http nhtsa https://<host>/mcp`
-**Cursor:** add `{ "mcpServers": { "nhtsa": { "url": "https://<host>/mcp" } } }` to `mcp.json`.
+**Claude Code:** `claude mcp add --transport http nhtsa https://nhtsa-recalls-mcp.chucks-lab.workers.dev/mcp`
+**Cursor:** add `{ "mcpServers": { "nhtsa": { "url": "https://nhtsa-recalls-mcp.chucks-lab.workers.dev/mcp" } } }` to `mcp.json`.
 
 ## Deploy your own (5 minutes)
 
@@ -62,7 +62,8 @@ npm run deploy     # wrangler deploy -> prints your workers.dev URL
 ```
 
 On Windows PowerShell where `npm run` wrappers are blocked, call the tools directly: `npx.cmd wrangler dev`,
-`npx.cmd wrangler deploy`, `npx.cmd vitest run`.
+`npx.cmd wrangler deploy`, `npx.cmd vitest run`. If your machine sets `NODE_ENV=production`, npm skips dev
+dependencies; use `npm install --include=dev`.
 
 ## Configuration
 
