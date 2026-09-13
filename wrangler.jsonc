@@ -1,0 +1,19 @@
+{
+  // NHTSA Recalls MCP - remote streamable-HTTP MCP server on Cloudflare Workers.
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "nhtsa-recalls-mcp",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-09-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "observability": { "enabled": true, "logs": { "enabled": true } },
+  "vars": {
+    // Comma-separated allowlist of tools the server will expose. Remove a name to hide it.
+    "ALLOWED_TOOLS": "decode_vin,list_models,get_recalls,get_recall_by_campaign,get_complaints,get_safety_ratings,get_safety_rating_by_id",
+    // Upstream (NHTSA) request timeout in milliseconds.
+    "UPSTREAM_TIMEOUT_MS": "8000",
+    // "info" or "debug"
+    "LOG_LEVEL": "info"
+    // Optional secret MCP_BEARER_TOKEN: when set (wrangler secret put MCP_BEARER_TOKEN), every
+    // request must carry "Authorization: Bearer <token>". Unset = public server for public data.
+  }
+}
